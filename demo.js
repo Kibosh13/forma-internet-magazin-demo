@@ -1,11 +1,5 @@
 
 (() => {
-  const notice = document.createElement('div');
-  notice.className = 'static-demo-notice';
-  notice.textContent = 'Статическая демонстрация — оформление заказов и отправка форм отключены';
-  document.body.prepend(notice);
-  if (document.querySelector('.palette-page')) notice.hidden = true;
-
   document.querySelectorAll('.menu-button').forEach((button) => {
     button.addEventListener('click', () => document.querySelector('.global-nav')?.classList.toggle('global-nav--open'));
   });
@@ -13,14 +7,12 @@
   document.querySelectorAll('.cart-button, .add-button, .checkout-link').forEach((control) => {
     control.addEventListener('click', (event) => {
       event.preventDefault();
-      notice.textContent = 'Корзина и оформление заказа доступны только в полной серверной версии';
     });
   });
 
   document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
-      notice.textContent = 'Отправка форм отключена в статической демонстрации';
     });
   });
 
