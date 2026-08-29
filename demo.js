@@ -16,6 +16,23 @@
     });
   });
 
+  document.querySelectorAll('.catalog-sort').forEach((sort) => {
+    const trigger = sort.querySelector('.catalog-sort__trigger');
+    const options = sort.querySelectorAll('.catalog-sort__menu button');
+    trigger?.addEventListener('click', () => {
+      const isOpen = sort.classList.toggle('catalog-sort--open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+    options.forEach((option) => option.addEventListener('click', () => {
+      options.forEach((item) => item.classList.remove('active'));
+      option.classList.add('active');
+      const label = trigger?.querySelector('span');
+      if (label) label.textContent = option.querySelector('span')?.textContent ?? '';
+      sort.classList.remove('catalog-sort--open');
+      trigger?.setAttribute('aria-expanded', 'false');
+    }));
+  });
+
   document.querySelectorAll('form').forEach((form) => {
     form.addEventListener('submit', (event) => {
       event.preventDefault();
