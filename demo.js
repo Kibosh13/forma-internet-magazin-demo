@@ -1,7 +1,13 @@
 
 (() => {
   document.querySelectorAll('.menu-button').forEach((button) => {
-    button.addEventListener('click', () => document.querySelector('.global-nav')?.classList.toggle('global-nav--open'));
+    button.addEventListener('click', () => {
+      const navigation = document.querySelector('.global-nav');
+      const isOpen = navigation?.classList.toggle('global-nav--open') ?? false;
+      button.classList.toggle('menu-button--open', isOpen);
+      button.setAttribute('aria-expanded', String(isOpen));
+      button.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    });
   });
 
   document.querySelectorAll('.cart-button, .add-button, .checkout-link').forEach((control) => {
